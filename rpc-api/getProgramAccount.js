@@ -1,5 +1,6 @@
 const { PublicKey } = require("@solana/web3.js");
 const { CONNECTION, PAYER } = require("../const");
+const { SWAP_PROGRAM_ID } = require('../programIds');
 
 // 常見programID
 // export const WRAPPED_SOL_MINT = new PublicKey(
@@ -41,8 +42,8 @@ const FARM_ID = new PublicKey('FARM1U7g8p6XG18m3P25Rnb1RPVQZt2sC4ax35CyJzyc')
 // 查詢某個program下的所有account
 
 async function main() {
-  const accounts = await CONNECTION.getProgramAccounts(FARM_ID);
-  console.log(accounts);
+  const accounts = await CONNECTION.getProgramAccounts(SWAP_PROGRAM_ID);
+  console.log(accounts.data);
 }
 
 main().then(

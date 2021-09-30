@@ -1,6 +1,6 @@
 import { Keypair, Transaction, SystemProgram } from "@solana/web3.js";
 
-import { ALICE, CONNECTION, PAYER, TEST_MINT_1 } from "../../../helper/const";
+import { TEST_OWNER, CONNECTION, PAYER, TEST_MINT_1 } from "../../../helper/const";
 
 import * as SPLToken from "@solana/spl-token";
 
@@ -41,7 +41,7 @@ async function main() {
       SPLToken.TOKEN_PROGRAM_ID, // program id, 通常是固定值 (token program id)
       TEST_MINT_1, // mint
       randomTokenAccount.publicKey, // 要初始化的token account public key
-      ALICE.publicKey // 操作 token account 的權限 (如果token account需要授權，都需要此帳號簽名)
+      TEST_OWNER.publicKey // 操作 token account 的權限 (如果token account需要授權，都需要此帳號簽名)
     )
   );
   randomTokenAccountTx.feePayer = PAYER.publicKey;
@@ -61,7 +61,7 @@ async function main() {
     SPLToken.ASSOCIATED_TOKEN_PROGRAM_ID, // 通常是固定值, associated token program id
     SPLToken.TOKEN_PROGRAM_ID, // 通常是固定值, token program id
     TEST_MINT_1, // mint
-    ALICE.publicKey // token account auth (擁有token account權限的人)
+    TEST_OWNER.publicKey // token account auth (擁有token account權限的人)
   );
   console.log(`ata: ${ata.toBase58()}`);
 
@@ -72,7 +72,7 @@ async function main() {
       SPLToken.TOKEN_PROGRAM_ID, // 通常是固定值, token program id
       TEST_MINT_1, // mint (需要跟剛剛算ata時的mint是同一個)
       ata, // 剛剛算出來的 ata
-      ALICE.publicKey, // token account owner (要跟剛剛算ata時的token account auth是同一個)
+      TEST_OWNER.publicKey, // token account owner (要跟剛剛算ata時的token account auth是同一個)
       PAYER.publicKey // payer, 建立帳戶付錢的人，等同於 SystemProgram.createAccount 的 from
     )
   );

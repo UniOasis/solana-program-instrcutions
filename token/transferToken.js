@@ -1,6 +1,6 @@
 import { Transaction } from "@solana/web3.js";
 
-import { CONNECTION, PAYER, TOKEN_ADDRESS_1, TOKEN_ADDRESS_2, ALICE } from "../../../helper/const";
+import { CONNECTION, PAYER, TOKEN_ADDRESS_1, TOKEN_ADDRESS_2, TEST_OWNER } from "../../../helper/const";
 
 import * as SPLToken from "@solana/spl-token";
 
@@ -13,14 +13,14 @@ async function main() {
       SPLToken.TOKEN_PROGRAM_ID, // 通常是固定數值, token program address
       TOKEN_ADDRESS_1, // from (token account public key)
       TOKEN_ADDRESS_2, // to (token account public key)
-      ALICE.publicKey, // from的auth
+      TEST_OWNER.publicKey, // from的auth
       [], // from是mutiple signers才需要帶，這邊我們留空
       10 // 轉帳的數量，這邊是最小單位，要注意decimals與實際數值的換算
     )
   );
   tx.feePayer = PAYER.publicKey;
 
-  console.log(`txhash: ${await CONNECTION.sendTransaction(tx, [ALICE, PAYER])}`);
+  console.log(`txhash: ${await CONNECTION.sendTransaction(tx, [TEST_OWNER, PAYER])}`);
 }
 
 main().then(

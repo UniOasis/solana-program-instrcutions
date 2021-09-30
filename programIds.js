@@ -40,9 +40,9 @@ const METAPLEX_ID = new PublicKey('p1exdMJcjVao65QdewkaZRUnU6VPSXhus9n2GzWfh98')
 // );
 
 // Serum Swap new version program id
-// export const SWAP_PROGRAM_ID = new PublicKey(
-//   'SwaPpA9LAaLfeLi3a68M4DjnLqgtticKg6CnyNwgAC8',
-// );
+const TOKEN_SWAP_PROGRAM_ID = new PublicKey(
+  'SwaPpA9LAaLfeLi3a68M4DjnLqgtticKg6CnyNwgAC8',
+);
 
 // Swap program id on mainnet-beta.
 // export const SWAP_PID = new PublicKey(
@@ -70,5 +70,6 @@ module.exports = {
   TOKEN_PROGRAM_ID,
   METADATA_PROGRAM_ID,
   METAPLEX_ID,
-  WRAPPED_SOL_MINT
+  WRAPPED_SOL_MINT,
+  TOKEN_SWAP_PROGRAM_ID
 }

@@ -9,7 +9,8 @@ const seedBuffer = bip39.mnemonicToSeedSync(phrase)
 // EHqmfkN89RJ7Y33CXM6uCzhVeuywHoJXZZLszBHHZy7o
 const PAYER = Keypair.fromSeed(seedBuffer.slice(0, 32));
 
-const ALICE = Keypair.fromSecretKey(
+// 2hieMSXcsk3F3bZE8iDe7WGREZesRDnDjHtdPVjya4NA
+const TEST_OWNER = Keypair.fromSecretKey(
   Uint8Array.from([
     16, 169, 21, 27, 237, 134, 45, 100, 113, 192, 66, 107, 174, 36, 175, 110, 195, 29, 133, 60, 134, 224, 92, 212, 74,
     138, 10, 139, 228, 27, 48, 106, 25, 74, 1, 158, 20, 222, 117, 41, 169, 27, 181, 228, 44, 110, 140, 200, 168, 187,
@@ -34,7 +35,7 @@ const TOKEN_ADDRESS_2 = new PublicKey("9jwUAvdgBGBm3aQ6U2ibiPavEKVh2uD5SPXPQyqcj
 
 module.exports = {
   PAYER,
-  ALICE,
+  TEST_OWNER,
   API_ENDPOINT,
   CONNECTION,
   TEST_MINT_1,

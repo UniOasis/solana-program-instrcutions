@@ -1,4 +1,4 @@
-const { CONNECTION, ALICE, TEST_MINT_1, PAYER, TOKEN_PROGRAM_ID } = require("../const")
+const { CONNECTION, TEST_OWNER, TEST_MINT_1, PAYER, TOKEN_PROGRAM_ID } = require("../const")
 
 // 查詢owner擁有多少個token account
 // 只會回傳mint publiKey, owner, token amount等資訊
