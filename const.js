@@ -10,13 +10,16 @@ const seedBuffer = bip39.mnemonicToSeedSync(phrase)
 const PAYER = Keypair.fromSeed(seedBuffer.slice(0, 32));
 
 // 2hieMSXcsk3F3bZE8iDe7WGREZesRDnDjHtdPVjya4NA
-const TEST_OWNER = Keypair.fromSecretKey(
-  Uint8Array.from([
-    16, 169, 21, 27, 237, 134, 45, 100, 113, 192, 66, 107, 174, 36, 175, 110, 195, 29, 133, 60, 134, 224, 92, 212, 74,
-    138, 10, 139, 228, 27, 48, 106, 25, 74, 1, 158, 20, 222, 117, 41, 169, 27, 181, 228, 44, 110, 140, 200, 168, 187,
-    24, 5, 88, 67, 100, 134, 162, 184, 245, 220, 111, 72, 139, 31,
-  ])
-);
+// const TEST_OWNER = Keypair.fromSecretKey(
+//   Uint8Array.from([
+//     16, 169, 21, 27, 237, 134, 45, 100, 113, 192, 66, 107, 174, 36, 175, 110, 195, 29, 133, 60, 134, 224, 92, 212, 74,
+//     138, 10, 139, 228, 27, 48, 106, 25, 74, 1, 158, 20, 222, 117, 41, 169, 27, 181, 228, 44, 110, 140, 200, 168, 187,
+//     24, 5, 88, 67, 100, 134, 162, 184, 245, 220, 111, 72, 139, 31,
+//   ])
+// );
+const ownerPhrase = 'taste accuse skin culture solve pistol opinion army primary clay night athlete'
+const ownerSeedBuffer = bip39.mnemonicToSeedSync(ownerPhrase)
+const TEST_OWNER = Keypair.fromSeed(ownerSeedBuffer.slice(0, 32));
 
 // const API_ENDPOINT = "https://api.mainnet-beta.solana.com"
 // const API_ENDPOINT = "https://solana-api.projectserum.com"

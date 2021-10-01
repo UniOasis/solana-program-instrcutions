@@ -56,16 +56,16 @@ const createMintAndVault = async (vaultOwnerPublicKey) => {
   return [mint.publicKey, vault.publicKey];
 }
 
-createMintAndVault(PAYER, PAYER).then(
-  async ([mint, vault]) => {
-    console.log({ mint: mint.toBase58(), vault: vault.toBase58() })
-    process.exit()
-  },
-  (err) => {
-    console.error(err);
-    process.exit(-1);
-  }
-);
+// createMintAndVault(PAYER.publicKey).then(
+//   async ([mint, vault]) => {
+//     console.log({ mint: mint.toBase58(), vault: vault.toBase58() })
+//     process.exit()
+//   },
+//   (err) => {
+//     console.error(err);
+//     process.exit(-1);
+//   }
+// );
 // (async function() {
 //   const [mint, vault] = await createMintAndVault(PAYER, PAYER)
 //   console.log({ mint: mint.toBase58(), vault: vault.toBase58() })

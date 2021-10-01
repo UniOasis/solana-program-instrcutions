@@ -39,7 +39,7 @@ const HOST_FEE_DENOMINATOR = 100;
 
 // Initial amount in each swap token
 let currentSwapTokenA = 1000000;
-let currentSwapTokenB = 10000000;
+let currentSwapTokenB = 1000000;
 let currentFeeAmount = 0;
 
 // Pool token amount minted on init
@@ -68,20 +68,20 @@ const createSwap = async () => {
     2,
     TOKEN_PROGRAM_ID,
   );
-  console.log({tokenPool})
+  // console.log({tokenPool})
 
   const tokenAccountPool = await tokenPool.createAccount(SWAP_PROGRAM_OWNER_FEE_ADDRESS);
-  // console.log({tokenAccountPool})
-  // // const ownerKey = SWAP_PROGRAM_OWNER_FEE_ADDRESS || owner.publicKey.toString();
-  // const feeAccount = await tokenPool.createAccount(SWAP_PROGRAM_OWNER_FEE_ADDRESS);
-  // console.log({feeAccount})
+  console.log({tokenAccountPool})
+  // const ownerKey = SWAP_PROGRAM_OWNER_FEE_ADDRESS || owner.publicKey.toString();
+  const feeAccount = await tokenPool.createAccount(SWAP_PROGRAM_OWNER_FEE_ADDRESS);
+  console.log({feeAccount})
 
   // create mintA token
-  const [mintA, tokenAccountA] = createMintAndVault(authority)
+  const [mintA, tokenAccountA] = await createMintAndVault(authority)
   console.log({mintA, tokenAccountA})
 
   // create mintB token
-  const [mintB, tokenAccountB] = createMintAndVault(authority)
+  const [mintB, tokenAccountB] = await createMintAndVault(authority)
   console.log({mintB, tokenAccountB})
 
 
