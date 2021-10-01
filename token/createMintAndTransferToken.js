@@ -4,16 +4,16 @@ const { CONNECTION, PAYER } = require("../const");
 
 (async () => {
   // Generate a new wallet keypair and airdrop SOL
-  var fromWallet = web3.Keypair.generate();
+  var fromWallet = Keypair.generate();
   var fromAirdropSignature = await CONNECTION.requestAirdrop(
     fromWallet.publicKey,
-    web3.LAMPORTS_PER_SOL,
+    LAMPORTS_PER_SOL,
   );
   //wait for airdrop confirmation
   await connection.confirmTransaction(fromAirdropSignature);
 
   // Generate a new wallet to receive newly minted token
-  var toWallet = web3.Keypair.generate();
+  var toWallet = Keypair.generate();
 
   //create new token mint
   let mint = await splToken.Token.createMint(
@@ -44,7 +44,7 @@ const { CONNECTION, PAYER } = require("../const");
   );
 
   // Add token transfer instructions to transaction
-  var transaction = new web3.Transaction().add(
+  var transaction = new Transaction().add(
     splToken.Token.createTransferInstruction(
       splToken.TOKEN_PROGRAM_ID,
       fromTokenAccount.address,
@@ -56,7 +56,7 @@ const { CONNECTION, PAYER } = require("../const");
   );
 
   // Sign transaction, broadcast, and confirm
-  var signature = await web3.sendAndConfirmTransaction(
+  var signature = await sendAndConfirmTransaction(
     connection,
     transaction,
     [fromWallet],
