@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/josh199483/solana-web3-test#readme",
   "dependencies": {
+    "@metaplex/js": "^1.1.0",
     "@project-serum/pool": "^0.2.3",
     "@solana/spl-token": "^0.1.8",
     "@solana/spl-token-registry": "^0.2.246",

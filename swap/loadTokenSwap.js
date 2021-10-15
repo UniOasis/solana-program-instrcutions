@@ -18,7 +18,7 @@ const loadTokenSwap = async () => {
     TOKEN_SWAP_PROGRAM_ID,
     TEST_OWNER, // what ever account?
   );
-  console.log({fetchedTokenSwap})
+  console.log({fetchedTokenSwap: fetchedTokenSwap.authority.toBase58()})
 }
 
 loadTokenSwap().then(

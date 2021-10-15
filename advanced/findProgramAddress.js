@@ -1,5 +1,6 @@
-const { PublicKey } = require("@solana/web3.js");
-const { METADATA_PROGRAM_ID, METAPLEX_ID } = require("../programIds");
+const { PublicKey, Connection } = require("@solana/web3.js");
+const {Utils} = require('@metaplex/js')
+const { METADATA_PROGRAM_ID } = require("../programIds");
 
 /**
  * seeds: (Buffer | Uint8Array)[],
@@ -9,16 +10,31 @@ const { METADATA_PROGRAM_ID, METAPLEX_ID } = require("../programIds");
 async function main() {
   const programs = await PublicKey.findProgramAddress(
     [
-      // Buffer.from('metadata'),
-      Buffer.from('metaplex'),
-      // METADATA_PROGRAM_ID.toBuffer(),
-      METAPLEX_ID.toBuffer(),
-      new PublicKey('7rKa7ZKTwvHHgzW9rSLSjg6aeNsdjKvzM9q4jhDq8rZe').toBuffer(),
+      Buffer.from('metadata'),
+      METADATA_PROGRAM_ID.toBuffer(),
+      new PublicKey('6Js5N4YffZc8PoJ6qm1o1MuCxCsUxU3w8RYcwsKnQMXz').toBuffer(),
     ],
-    // METADATA_PROGRAM_ID,
-    METAPLEX_ID
+    METADATA_PROGRAM_ID,
   );
-  console.log({ programs: programs[0].toBase58() })
+  const PDA = programs[0].toBase58()
+  console.log({ programs: PDA })
+
+  // const programs_metaplex = await PublicKey.findProgramAddress(
+  //   [
+  //     Buffer.from('metaplex'),
+  //     METADATA_PROGRAM_ID.toBuffer(),
+  //     new PublicKey('6Js5N4YffZc8PoJ6qm1o1MuCxCsUxU3w8RYcwsKnQMXz').toBuffer(),
+  //   ],
+  //   METADATA_PROGRAM_ID,
+  // );
+
+  const API_ENDPOINT = "https://solana-api.projectserum.com"
+  const connection = new Connection(API_ENDPOINT);
+
+  const accountData = await connection.getAccountInfo(new PublicKey(PDA));
+  console.log({accountData: accountData.data})
+  const json = Utils.Borsh.Data.deserialize(accountData.data)
+  console.log({json})
 }
 
 main().then(
